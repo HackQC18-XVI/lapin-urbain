@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 import CameraView from './views/Camera';
+import MapView from './views/MapView';
 
 const instructions = Platform.select({
     ios: 'Press Cmd+R to reload,\n' +
@@ -26,7 +27,7 @@ export default class App extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <CameraView />
+                <MapView />
             </View>
         );
     }
