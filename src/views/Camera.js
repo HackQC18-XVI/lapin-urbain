@@ -6,7 +6,12 @@ import {
     View
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import Voice from 'react-native-voice';
+
+// App imports
 import WasteDescription from './WasteDescription';
+import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
+
 
 const styles = StyleSheet.create({
     // General
@@ -48,9 +53,20 @@ export default class CameraView extends Component<Props> {
     constructor(props) {
         super(props);
         this.state = {
-            showDescription: false
+            showDescription: false,
+            isRecording: false,
+            textRecognized: ''
         }
         this.takePicture = this.takePicture.bind(this);
+        this.takeSound = this.takeSound.bind(this);
+        Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
+        var token = 'cd1fafc772034cce8b83c34bdba73387';
+        this.client = new ApiAiClient({accessToken: token});
+    }
+    onSpeechResultsHandler(result) {
+        this.setState({
+            textRecognized: result.value[0]
+        });
     }
     takePicture = async function() {
         if (this.camera) {
@@ -60,6 +76,27 @@ export default class CameraView extends Component<Props> {
             console.log(data.uri);
         }
     }
+
+    // Recording
+    takeSound() {
+        if (this.state.isRecording) {
+            this.stopRecording();
+        } else {
+            this.startRecording();
+        }
+        this.setState({isRecording: !this.state.isRecording});
+    }
+    startRecording() {
+        Voice.start('fr-FR');
+    }
+    stopRecording() {
+        Voice.stop();
+        var text = this.state.textRecognized;
+        this.client.textRequest(text).then((result) => {
+            console.log(result);
+        });
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -76,7 +113,7 @@ export default class CameraView extends Component<Props> {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.captureSound}
-                        onPress={this.takePicture}>
+                        onPress={this.takeSound}>
                         <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
                     </TouchableOpacity>
                     {this.state.showDescription ?
