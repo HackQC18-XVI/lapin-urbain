@@ -2,7 +2,10 @@ import {URL} from '../common/Constants';
 
 
 class PictureService {
-    static sendPicture(urlImage) {
+    constructor() {
+        this.description = {}
+    }
+    send(urlImage) {
         // Prepare data
         var photo = {
             uri: urlImage,
@@ -32,4 +35,4 @@ class PictureService {
     }
 }
 
-export default PictureService;
+export default new PictureService();
