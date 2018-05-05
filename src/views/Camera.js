@@ -6,6 +6,7 @@ import {
     View
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import WasteDescription from './WasteDescription';
 
 const styles = StyleSheet.create({
     // General
@@ -46,13 +47,17 @@ const styles = StyleSheet.create({
 export default class CameraView extends Component<Props> {
     constructor(props) {
         super(props);
+        this.state = {
+            showDescription: false
+        }
         this.takePicture = this.takePicture.bind(this);
     }
     takePicture = async function() {
         if (this.camera) {
-          const options = { quality: 0.5, base64: true };
-          const data = await this.camera.takePictureAsync(options)
-          console.log(data.uri);
+            this.setState({showDescription: true});
+            const options = { quality: 0.5, base64: true };
+            const data = await this.camera.takePictureAsync(options)
+            console.log(data.uri);
         }
     }
     render() {
@@ -74,6 +79,9 @@ export default class CameraView extends Component<Props> {
                         onPress={this.takePicture}>
                         <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
                     </TouchableOpacity>
+                    {this.state.showDescription ?
+                        <WasteDescription /> : null
+                    }
                 </RNCamera>
             </View>
         );
