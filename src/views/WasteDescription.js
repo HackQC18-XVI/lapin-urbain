@@ -29,7 +29,7 @@ export default class WasteDescription extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <MapView />
+                <PickupView />
             </View>
         );
     }
