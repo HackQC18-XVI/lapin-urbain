@@ -12,7 +12,7 @@ class PictureService {
         var body = new FormData();
         body.append('file', photo);
         // Request
-        fetch(URL.photo, {
+        fetch(URL.predict, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json'
@@ -20,14 +20,11 @@ class PictureService {
             body: body
         }).then((response) => {
             response.json().then((response) => {
-                var plateNumber = ''
+                console.log(response);
                 if (response && response.results && response.results.length) {
-                    plateNumber = response.results[0].candidates[0].plate
+
                 }
-                this.setState({
-                    result: response,
-                    plate: plateNumber
-                });
+
             })
         }).catch((error) => {
             console.log(error);

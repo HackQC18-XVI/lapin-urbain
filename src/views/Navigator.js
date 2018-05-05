@@ -14,10 +14,9 @@ const Navigator = SwipeNavigator({
     screen: Microphone,
     type: 'push'
   },
-
   Description: {
     screen: Description,
-    type: 'over', // push is the default type
+    type: 'over',
   }
 });
 

@@ -9,7 +9,7 @@ import { RNCamera } from 'react-native-camera';
 
 // App imports
 import WasteDescription from './WasteDescription';
-
+import PictureService from '../services/PictureService';
 
 const styles = StyleSheet.create({
     // General
@@ -51,7 +51,8 @@ export default class CameraView extends Component<Props> {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options)
             console.log(data.uri);
-            this.props.nav.navigateDown()
+            PictureService.sendPicture(data.uri);
+            // this.props.nav.navigateDown()
         }
     }
 

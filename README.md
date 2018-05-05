@@ -12,6 +12,7 @@ LapinUrbain mobile application
     - https://cocoapods.org/
 2. In the project folder: `npm install`
 3. In the ios folder: `pod install`
+4. cd ./node_modules/react-native-siri-wave-view/ios/ && pod install
 
 ### Launch
 

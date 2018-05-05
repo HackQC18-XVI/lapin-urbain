@@ -6,6 +6,7 @@ import {
     TouchableOpacity,
     Text
 } from 'react-native';
+// import RNSiriWaveView from 'react-native-siri-wave-view';
 import Voice from 'react-native-voice';
 import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
 
@@ -33,7 +34,9 @@ export default class Pickup extends Component<Props> {
         super(props);
         this.state = {
             isRecording: false,
-            textRecognized: ''
+            textRecognized: '',
+            startAnimation: true,
+            stopAnimation: false
         }
         this.takeSound = this.takeSound.bind(this);
         Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
@@ -83,6 +86,14 @@ export default class Pickup extends Component<Props> {
         return (
             <View style={styles.container}>
                 <Text>{this.state.textRecognized}</Text>
+                {/*
+                <RNSiriWaveView
+                    type={1}
+                    width={400}
+                    height={200}
+                    startAnimation={this.state.startAnimation}
+                    stopAnimation={this.state.stopAnimation} />
+                */}
                 <TouchableOpacity
                     style={styles.captureSound}
                     onPress={this.takeSound}>

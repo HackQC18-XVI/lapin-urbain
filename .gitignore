@@ -2,6 +2,10 @@
 #
 .DS_Store
 
+# Node
+#
+package-lock.json
+
 # Xcode
 #
 build/
