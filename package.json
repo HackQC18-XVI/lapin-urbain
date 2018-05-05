@@ -12,6 +12,8 @@
     "react-native-camera": "^1.1.2",
     "react-native-geojson": "^0.1.1",
     "react-native-maps": "^0.21.0",
+    "react-native-swipe-navigation": "^1.0.0-beta",
+    "react-native-swiper": "^1.5.13",
     "react-native-voice": "^0.2.6"
   },
   "devDependencies": {

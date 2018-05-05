@@ -8,13 +8,14 @@ import {
 
 import CameraView from './views/Camera';
 import MapView from './views/Map';
+import Navigator from './views/Navigator';
 
 
 export default class App extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <CameraView />
+                <Navigator />
             </View>
         );
     }

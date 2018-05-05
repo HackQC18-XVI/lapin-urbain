@@ -75,7 +75,8 @@ export default class CameraView extends Component<Props> {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options)
             console.log(data.uri);
-            this.setState({showDescription: true});
+            // this.setState({showDescription: true});
+            this.props.nav.navigateDown()
         }
     }
 
@@ -103,26 +104,26 @@ export default class CameraView extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <RNCamera
-                    ref={ref => {this.camera = ref;}}
-                    style={styles.preview}
-                    type={RNCamera.Constants.Type.back}
-                    permissionDialogTitle={'Permission to use camera'}
-                    permissionDialogMessage={'We need your permission to use your camera phone'}>
-                    <TouchableOpacity
-                        style={styles.captureIcon}
-                        onPress={this.takePicture.bind(this)}
-                        underlayColor="rgba(255, 255, 255, 0.5)">
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.captureSound}
-                        onPress={this.takeSound}>
-                        <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
-                    </TouchableOpacity>
-                    {this.state.showDescription ?
-                        <WasteDescription /> : null
-                    }
-                </RNCamera>
+                {this.state.showDescription ?
+                    <WasteDescription /> :
+                    <RNCamera
+                        ref={ref => {this.camera = ref;}}
+                        style={styles.preview}
+                        type={RNCamera.Constants.Type.back}
+                        permissionDialogTitle={'Permission to use camera'}
+                        permissionDialogMessage={'We need your permission to use your camera phone'}>
+                        <TouchableOpacity
+                            style={styles.captureIcon}
+                            onPress={this.takePicture.bind(this)}
+                            underlayColor="rgba(255, 255, 255, 0.5)">
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={styles.captureSound}
+                            onPress={this.takeSound}>
+                            <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
+                        </TouchableOpacity>
+                    </RNCamera>
+                }
             </View>
         );
     }
