@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
-    AppRegistry,
-    Dimensions,
+    Image,
     StyleSheet,
-    Text,
     TouchableOpacity,
     View
 } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 const styles = StyleSheet.create({
+    // General
     container: {
         flex: 1,
         flexDirection: 'column',
@@ -20,18 +19,35 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'center'
     },
-    capture: {
-        flex: 0,
-        backgroundColor: '#fff',
-        borderRadius: 5,
-        padding: 15,
-        paddingHorizontal: 20,
-        alignSelf: 'center',
-        margin: 20
+
+    // Capture icon
+    captureIcon: {
+        width: 70,
+        height: 70,
+        borderRadius: 70,
+        borderWidth: 5,
+        borderColor: '#FFF',
+        backgroundColor: 'transparent',
+        marginBottom: 15,
+    },
+
+    // Sound icon
+    captureSound: {
+        position: 'absolute',
+        top: 15,
+        right: 15
+    },
+    imgSound: {
+        width: 45,
+        height: 45
     }
 });
 
 export default class CameraView extends Component<Props> {
+    constructor(props) {
+        super(props);
+        this.takePicture = this.takePicture.bind(this);
+    }
     takePicture = async function() {
         if (this.camera) {
           const options = { quality: 0.5, base64: true };
@@ -46,16 +62,19 @@ export default class CameraView extends Component<Props> {
                     ref={ref => {this.camera = ref;}}
                     style={styles.preview}
                     type={RNCamera.Constants.Type.back}
-                    flashMode={RNCamera.Constants.FlashMode.on}
                     permissionDialogTitle={'Permission to use camera'}
-                    permissionDialogMessage={'We need your permission to use your camera phone'} />
-                <View style={{flex: 0, flexDirection: 'row', justifyContent: 'center',}}>
+                    permissionDialogMessage={'We need your permission to use your camera phone'}>
                     <TouchableOpacity
+                        style={styles.captureIcon}
                         onPress={this.takePicture.bind(this)}
-                        style = {styles.capture}>
-                        <Text style={{fontSize: 14}}> SNAP </Text>
+                        underlayColor="rgba(255, 255, 255, 0.5)">
                     </TouchableOpacity>
-                </View>
+                    <TouchableOpacity
+                        style={styles.captureSound}
+                        onPress={this.takePicture}>
+                        <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
+                    </TouchableOpacity>
+                </RNCamera>
             </View>
         );
     }
