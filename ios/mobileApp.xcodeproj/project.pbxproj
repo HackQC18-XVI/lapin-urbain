@@ -1368,6 +1368,17 @@
 				);
 				INFOPLIST_FILE = mobileApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_CONFIGURATION_BUILD_DIR}/DoubleConversion",
+					"${PODS_CONFIGURATION_BUILD_DIR}/Folly",
+					"${PODS_CONFIGURATION_BUILD_DIR}/Google-Maps-iOS-Utils",
+					"${PODS_CONFIGURATION_BUILD_DIR}/React",
+					"${PODS_CONFIGURATION_BUILD_DIR}/glog",
+					"${PODS_CONFIGURATION_BUILD_DIR}/react-native-google-maps",
+					"${PODS_CONFIGURATION_BUILD_DIR}/react-native-maps",
+					"${PODS_CONFIGURATION_BUILD_DIR}/yoga",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

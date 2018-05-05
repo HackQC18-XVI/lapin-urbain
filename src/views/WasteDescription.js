@@ -7,36 +7,29 @@ import {
     View
 } from 'react-native';
 
+// App imports
+import MapView from './Map';
+import PickupView from './Pickup';
+
 const styles = StyleSheet.create({
-    containerOpacity: {
-        flex: 1,
-        flexDirection: 'column',
-        position: 'absolute',
-        height: '100%',
-        width: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)'
-    },
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: 'red',
+        backgroundColor: '#A0A0A0',
         position: 'absolute',
-        height: '60%',
-        width: '80%',
-        top: '20%',
-        left: '10%',
-        borderRadius: 30
+        height: '100%',
+        width: '100%',
+        top: 25,
+        borderRadius: 30,
+        padding: 50
     }
 });
 
 export default class WasteDescription extends Component<Props> {
     render() {
         return (
-            <View style={styles.containerOpacity}>
-                <View style={styles.container}>
-                    <Text>Type: plastic</Text>
-                    <Text>Name: bottle</Text>
-                </View>
+            <View style={styles.container}>
+                <MapView />
             </View>
         );
     }

@@ -68,12 +68,14 @@ export default class CameraView extends Component<Props> {
             textRecognized: result.value[0]
         });
     }
-    takePicture = async function() {
+
+    // Picture
+    async takePicture() {
         if (this.camera) {
-            this.setState({showDescription: true});
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options)
             console.log(data.uri);
+            this.setState({showDescription: true});
         }
     }
 
@@ -94,6 +96,7 @@ export default class CameraView extends Component<Props> {
         var text = this.state.textRecognized;
         this.client.textRequest(text).then((result) => {
             console.log(result);
+            this.setState({showDescription: true});
         });
     }
 
