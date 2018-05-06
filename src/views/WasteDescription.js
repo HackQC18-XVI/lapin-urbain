@@ -18,6 +18,10 @@ const styles = StyleSheet.create({
         top: 25,
         borderRadius: 30,
         padding: 50
+    },
+    spinner: {
+        width: 100,
+        height: 100
     }
 });
 
@@ -47,7 +51,7 @@ export default class Description extends Component<Props> {
                         <Text>Instructions: {item['instructions-speciales']}</Text>
                         <MapView />
                     </View> :
-                    <Text>Loading...</Text>
+                    <Image style={styles.spinner} source={require('../resources/loading.gif')} />
                 }
             </View>
         );
