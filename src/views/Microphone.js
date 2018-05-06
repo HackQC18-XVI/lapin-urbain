@@ -48,6 +48,7 @@ export default class Pickup extends Component<Props> {
         this.state = {
             isRecording: false,
             textRecognized: '',
+            error: null,
             startAnimation: false,
             stopAnimation: false
         }
@@ -78,21 +79,25 @@ export default class Pickup extends Component<Props> {
     }
     startRecording() {
         Voice.start('fr-FR');
-        this.setState({startAnimation: true, stopAnimation: false});
+        this.setState({error: null, startAnimation: true, stopAnimation: false});
     }
     stopRecording() {
         Voice.stop();
-        this.setState({startAnimation: false, stopAnimation: true});
+        this.setState({error: null, startAnimation: false, stopAnimation: true});
         var text = this.state.textRecognized;
         this.client.textRequest(text.toLowerCase()).then((result) => {
             var id;
             try {
                 id = result['result']['parameters']['ITEM'];
             } catch(error) {
-                id = 'banana.n.02';
+                id = '';
             }
-            ApiService.sendText(id);
-            this.props.nav.navigateDown()
+            if (!id || id == '') {
+                this.setState({error: 'Aucun résultat'});
+            } else {
+                ApiService.sendText(id);
+                this.props.nav.navigateDown()
+            }
         });
     }
 
@@ -100,7 +105,7 @@ export default class Pickup extends Component<Props> {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>
-                    {this.state.textRecognized}
+                    {this.state.error ? this.state.error : this.state.textRecognized}
                 </Text>
                 <TouchableOpacity
                     style={styles.captureSound}
