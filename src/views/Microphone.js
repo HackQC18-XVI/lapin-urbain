@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     Text
 } from 'react-native';
-// import RNSiriWaveView from 'react-native-siri-wave-view';
+import RNSiriWaveView from 'react-native-siri-wave-view';
 import Voice from 'react-native-voice';
 
 // App imports
@@ -18,7 +18,7 @@ import ApiService from '../services/ApiService';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#404040',
+        backgroundColor: '#FFFFFF',
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -30,6 +30,15 @@ const styles = StyleSheet.create({
     imgSound: {
         width: 100,
         height: 100
+    },
+    text: {
+        fontSize: 18,
+        position: 'absolute',
+        top: 100
+    },
+    wave: {
+        position: 'absolute',
+        bottom: 0
     }
 });
 
@@ -39,7 +48,7 @@ export default class Pickup extends Component<Props> {
         this.state = {
             isRecording: false,
             textRecognized: '',
-            startAnimation: true,
+            startAnimation: false,
             stopAnimation: false
         }
         this.takeSound = this.takeSound.bind(this);
@@ -69,11 +78,13 @@ export default class Pickup extends Component<Props> {
     }
     startRecording() {
         Voice.start('fr-FR');
+        this.setState({startAnimation: true, stopAnimation: false});
     }
     stopRecording() {
         Voice.stop();
+        this.setState({startAnimation: false, stopAnimation: true});
         var text = this.state.textRecognized;
-        this.client.textRequest(text).then((result) => {
+        this.client.textRequest('ou dois je mettre ce telephone').then((result) => {
             var id;
             try {
                 id = result['result']['parameters']['ITEM'];
@@ -86,30 +97,24 @@ export default class Pickup extends Component<Props> {
     }
 
     render() {
-        var item = {
-            "nom-collecte": "Aires de réception de matériaux secs",
-            "categorie": "Matériaux de construction",
-            "description": "Béton, béton armé, mortier et ciment durcis en morceaux",
-            "instructions-speciales": "Moins de 30 cm de long"
-        }
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>
                     {this.state.textRecognized}
                 </Text>
-                {/*
-                <RNSiriWaveView
-                    type={1}
-                    width={400}
-                    height={200}
-                    startAnimation={this.state.startAnimation}
-                    stopAnimation={this.state.stopAnimation} />
-                */}
                 <TouchableOpacity
                     style={styles.captureSound}
                     onPress={this.takeSound}>
-                    <Image style={styles.imgSound} source={require('../resources/microphone.png')} />
+                    <Image style={styles.imgSound} source={require('../resources/microphone-black.png')} />
                 </TouchableOpacity>
+                <View style={styles.wave}>
+                    <RNSiriWaveView
+                        type={1}
+                        width={380}
+                        height={200}
+                        startAnimation={this.state.startAnimation}
+                        stopAnimation={this.state.stopAnimation} />
+                </View>
             </View>
         );
     }
