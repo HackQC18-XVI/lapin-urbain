@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         left: 10
     },
     message:{
-        fontSize: 12,
+        fontSize: 14,
         color: '#808080',
         top: 40,
         left: 10,

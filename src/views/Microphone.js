@@ -84,7 +84,7 @@ export default class Pickup extends Component<Props> {
         Voice.stop();
         this.setState({startAnimation: false, stopAnimation: true});
         var text = this.state.textRecognized;
-        this.client.textRequest(text).then((result) => {
+        this.client.textRequest(text.toLowerCase()).then((result) => {
             var id;
             try {
                 id = result['result']['parameters']['ITEM'];
