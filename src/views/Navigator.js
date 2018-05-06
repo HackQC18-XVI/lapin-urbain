@@ -14,6 +14,7 @@ const Navigator = SwipeNavigator({
     },
     Microphone: {
         screen: Microphone,
+        bottom: 'Description',
         type: 'push'
     },
     Description: {

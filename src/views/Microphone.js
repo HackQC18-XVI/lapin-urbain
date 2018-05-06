@@ -12,6 +12,7 @@ import Voice from 'react-native-voice';
 
 // App imports
 import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
+import PictureService from '../services/PictureService';
 
 // Styles
 const styles = StyleSheet.create({
@@ -72,10 +73,12 @@ export default class Pickup extends Component<Props> {
     stopRecording() {
         Voice.stop();
         var text = this.state.textRecognized;
-        console.log(text);
         this.client.textRequest(text).then((result) => {
+            // TODO: extract ITEM ID from result
             console.log(result);
-            this.setState({showDescription: true});
+            var id = 'banana.n.02';
+            PictureService.sendText(id);
+            this.props.nav.navigateDown()
         });
     }
 

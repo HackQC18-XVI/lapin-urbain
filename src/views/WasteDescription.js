@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class Pickup extends Component<Props> {
+export default class Description extends Component<Props> {
     constructor(props) {
         super(props);
         this.state = {
@@ -32,9 +32,6 @@ export default class Pickup extends Component<Props> {
     componentDidMount() {
         PictureService.callback = this.callbackResult;
     }
-    componentWillUnmount() {
-        console.log('unmount');
-    }
     callbackResult(result) {
         this.setState({item: result});
     }
@@ -42,7 +39,7 @@ export default class Pickup extends Component<Props> {
         var item = this.state.item;
         return (
             <View style={styles.container}>
-                {!PictureService.loading ?
+                {!PictureService.loading && item ?
                     <View>
                         <Text>Type: {item['id']}</Text>
                         <Text>Categorie: {item['categorie']}</Text>
