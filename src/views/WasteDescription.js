@@ -11,17 +11,34 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
-        backgroundColor: '#A0A0A0',
+        backgroundColor: '#FFF',
         position: 'absolute',
-        height: '100%',
+        height: '90%',
         width: '100%',
-        top: 25,
-        borderRadius: 30,
-        padding: 50
+        bottom: 0,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     spinner: {
-        width: 100,
-        height: 100
+        width: 300,
+        height: 300
+    },
+    dismiss:{
+        fontSize: 14,
+        position: 'absolute',
+        fontWeight: 'bold',
+        color: '#b2b2b2',
+        top:0,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    categorie:{
+        top:10,
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#808080',
     }
 });
 
@@ -41,14 +58,19 @@ export default class Description extends Component<Props> {
     }
     render() {
         var item = this.state.item;
+        console.log(item)
         return (
             <View style={styles.container}>
                 {!ApiService.loading && item ?
+                    <Text style={styles.dismiss}>{'cacher'.toUpperCase()}{'\n'}</Text> : null
+                }
+                {!ApiService.loading && item ?
                     <View>
-                        <Text>Type: {item['id']}</Text>
-                        <Text>Categorie: {item['categorie']}</Text>
-                        <Text>Description: {item['description']}</Text>
-                        <Text>Instructions: {item['instructions-speciales']}</Text>
+                        <Text style={styles.categorie}>{item['categorie']}</Text>
+                        <Text>{item['nom-collecte']}</Text>
+                        {item['instructions-speciales'] ?
+                           <Text>Instructions: {item['instructions-speciales']}</Text> : null
+                        }
                         <MapView location={item['location']} />
                     </View> :
                     <Image style={styles.spinner} source={require('../resources/loading.gif')} />
