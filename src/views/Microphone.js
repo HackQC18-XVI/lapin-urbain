@@ -28,8 +28,8 @@ const styles = StyleSheet.create({
 
     },
     imgSound: {
-        width: 100,
-        height: 100
+        width: 200,
+        height: 200
     },
     text: {
         fontSize: 18,
@@ -105,7 +105,7 @@ export default class Pickup extends Component<Props> {
                 <TouchableOpacity
                     style={styles.captureSound}
                     onPress={this.takeSound}>
-                    <Image style={styles.imgSound} source={require('../resources/microphone-black.png')} />
+                    <Image style={styles.imgSound} source={require('../resources/mascot.png')} />
                 </TouchableOpacity>
                 <View style={styles.wave}>
                     <RNSiriWaveView
