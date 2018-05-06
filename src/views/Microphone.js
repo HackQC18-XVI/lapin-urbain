@@ -99,7 +99,7 @@ export default class Pickup extends Component<Props> {
     render() {
         // Style text
         var text = {
-            fontSize: 24,
+            fontSize: 22,
             position: 'absolute',
             top: 100,
             color: this.state.error ? '#8bc441' : '#16aa9d'
