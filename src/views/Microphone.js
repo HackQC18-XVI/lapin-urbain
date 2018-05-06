@@ -77,6 +77,11 @@ export default class Pickup extends Component<Props> {
             // TODO: extract ITEM ID from result
             console.log(result);
             var id = 'banana.n.02';
+            try {
+                id = result['result']['parameters']['ITEM'];
+            } catch(error) {
+
+            }
             ApiService.sendText(id);
             this.props.nav.navigateDown()
         });
