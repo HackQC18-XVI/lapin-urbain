@@ -5,7 +5,7 @@ class PictureService {
     constructor() {
         this.loading = false;
     }
-    send(urlImage) {
+    sendPicture(urlImage) {
         this.loading = true;
 
         // Prepare data
@@ -24,6 +24,22 @@ class PictureService {
                 'Accept': 'application/json'
             },
             body: body
+        }).then((response) => {
+            response.json().then((response) => {
+                this.loading = false;
+                this.callback(response);
+            });
+        }).catch((error) => {
+            this.loading = false;
+        });
+    }
+    sendText(id) {
+        // Request
+        fetch(URL.categories.replace(':id', id), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
         }).then((response) => {
             response.json().then((response) => {
                 this.loading = false;

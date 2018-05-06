@@ -48,7 +48,7 @@ export default class CameraView extends Component<Props> {
             const options = { quality: 0.5, base64: true };
             const data = await this.camera.takePictureAsync(options)
             console.log(data.uri);
-            PictureService.send(data.uri);
+            PictureService.sendPicture(data.uri);
             this.props.nav.navigateDown()
         }
     }

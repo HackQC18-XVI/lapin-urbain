@@ -3,7 +3,8 @@ var CONSTANTS = {
 };
 
 var URL = {
-    predict: CONSTANTS.HOST_API + '/predict'
+    predict: CONSTANTS.HOST_API + '/predict',
+    categories: CONSTANTS.HOST_API + '/categories/:id'
 };
 
 export {

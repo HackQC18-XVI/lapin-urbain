@@ -17,14 +17,14 @@ import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'blue'
+        backgroundColor: '#404040',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
 
     // Sound icon
     captureSound: {
-        position: 'absolute',
-        top: 100,
-        right: 100
+
     },
     imgSound: {
         width: 100,
@@ -88,7 +88,9 @@ export default class Pickup extends Component<Props> {
         }
         return (
             <View style={styles.container}>
-                <Text>{this.state.textRecognized}</Text>
+                <Text style={styles.text}>
+                    {this.state.textRecognized}
+                </Text>
                 {/*
                 <RNSiriWaveView
                     type={1}
