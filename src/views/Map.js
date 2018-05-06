@@ -19,22 +19,23 @@ const styles = StyleSheet.create({
     }
 });
 
-const alcatraz = {
-    type: 'FeatureCollection',
-    features: [
-        {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-                type: 'Point',
-                coordinates: [-122.42305755615234, 37.82687023785448],
-            }
-        }
-    ]
-};
-
 export default class Map extends Component<Props> {
     render() {
+        const alcatraz = {
+            type: 'FeatureCollection',
+            features: [
+                {
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [-122.42305755615234, 37.82687023785448],
+                    }
+                }
+            ]
+        };
+        // WE CAN ACCESS this.props.location here
+
         return (
             <View style={styles.container}>
                 <MapView style={styles.map}>

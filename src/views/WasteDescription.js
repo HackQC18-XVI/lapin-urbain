@@ -49,7 +49,7 @@ export default class Description extends Component<Props> {
                         <Text>Categorie: {item['categorie']}</Text>
                         <Text>Description: {item['description']}</Text>
                         <Text>Instructions: {item['instructions-speciales']}</Text>
-                        <MapView />
+                        <MapView location={item['location']} />
                     </View> :
                     <Image style={styles.spinner} source={require('../resources/loading.gif')} />
                 }
