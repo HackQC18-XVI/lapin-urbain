@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
-import Geojson from 'react-native-geojson';
 
 // Styles
 const styles = StyleSheet.create({
@@ -15,19 +14,33 @@ const styles = StyleSheet.create({
 
 export default class Map extends Component<Props> {
     render() {
-        const geojson = {
-            type: 'FeatureCollection',
-            features: [
-                {
-                    type: 'Feature',
-                    properties: {},
-                    geometry: this.props.location.geometry
-                }
-            ]
-        };
+        var content;
+        if (this.props.location.geometry.type === 'Polygon') {
+            const polygon = this.props.location.geometry.coordinates[0].map(coordsArr => {
+                let coords = {
+                    latitude: coordsArr[1],
+                    longitude: coordsArr[0],
+                  }
+                  return coords;
+            });
+            content = (
+                <MapView.Polygon
+                    fillColor={color}
+                    coordinates={polygon} />
+            );
+        } else {
+            const point = this.props.location.geometry.coordinates;
+            content = (
+                <View />
+            );
+        }
+
+        var color = "rgba(80, 0, 0, 0.5)";
         return (
-            <MapView style={styles.map}>
-                <Geojson geojson={geojson} />
+            <MapView
+                style={styles.map}
+                showsUserLocation={true}>
+                {content}
             </MapView>
         );
     }
