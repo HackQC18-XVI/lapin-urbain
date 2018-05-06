@@ -78,12 +78,19 @@ const styles = StyleSheet.create({
     },
     message:{
         fontSize: 12,
-        fontWeight: 'bold',
         color: '#808080',
         top: 40,
         left: 10,
         width: '90%'
-    }
+    },
+    instructions:{
+        fontSize: 12,
+        color: '#808080',
+        top: 42,
+        left: 10,
+        width: '90%'
+}
+
 });
 
 export default class Description extends Component<Props> {

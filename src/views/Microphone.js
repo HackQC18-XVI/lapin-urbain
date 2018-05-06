@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     wave: {
         position: 'absolute',
-        bottom: 0
+        bottom: 10
     }
 });
 
