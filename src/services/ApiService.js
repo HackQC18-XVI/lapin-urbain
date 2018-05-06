@@ -27,11 +27,16 @@ class ApiService {
         }).then((response) => {
             response.json().then((response) => {
                 this.getLocationInfo(response['depot'], response['type-collecte']).then((responseLocation) => {
-                    responseLocation.json().then((resultLocation) => {
+                    if (responseLocation.status === 200) {
+                        responseLocation.json().then((resultLocation) => {
+                            this.loading = false;
+                            response['location'] = resultLocation;
+                            this.callback(response);
+                        });
+                    } else {
                         this.loading = false;
-                        response['location'] = resultLocation;
                         this.callback(response);
-                    });
+                    }
                 });
             });
         }).catch((error) => {
@@ -48,11 +53,16 @@ class ApiService {
         }).then((response) => {
             response.json().then((response) => {
                 this.getLocationInfo(response['depot'], response['type-collecte']).then((responseLocation) => {
-                    responseLocation.json().then((resultLocation) => {
+                    if (responseLocation.status === 200) {
+                        responseLocation.json().then((resultLocation) => {
+                            this.loading = false;
+                            response['location'] = resultLocation;
+                            this.callback(response);
+                        });
+                    } else {
                         this.loading = false;
-                        response['location'] = resultLocation;
                         this.callback(response);
-                    });
+                    }
                 });
             });
         }).catch((error) => {

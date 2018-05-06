@@ -22,7 +22,7 @@ export default class Map extends Component<Props> {
             longitude: CONSTANTS.MY_POSITION.LONGITUDE
         };
         var content;
-        if (this.props.location.geometry.type === 'Polygon') {
+        if (this.props.location && this.props.location.geometry && this.props.location.geometry.type === 'Polygon') {
             const polygon = this.props.location.geometry.coordinates[0].map(coordsArr => {
                 let coords = {
                     latitude: coordsArr[1],
@@ -36,7 +36,7 @@ export default class Map extends Component<Props> {
                     fillColor={color}
                     coordinates={polygon} />
             );
-        } else {
+        } else if (this.props.location && this.props.location.geometry && this.props.location.geometry.type === 'Point') {
             const point = this.props.location.geometry.coordinates;
             content = (
                 <MapView.Marker
@@ -48,8 +48,10 @@ export default class Map extends Component<Props> {
         }
 
         return (
-            <MapView style={styles.map}>
-                {content}
+            <MapView style={styles.map} index={0}>
+                {content ?
+                    content : null
+                }
                 <MapView.Marker coordinate={myPosition} pinColor="blue" />
             </MapView>
         );
