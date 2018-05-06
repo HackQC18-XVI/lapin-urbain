@@ -21,6 +21,12 @@ export default class Map extends Component<Props> {
             latitude: CONSTANTS.MY_POSITION.LATITUDE,
             longitude: CONSTANTS.MY_POSITION.LONGITUDE
         };
+        var initialRegion = {
+            latitude: CONSTANTS.MY_POSITION.LATITUDE,
+            longitude: CONSTANTS.MY_POSITION.LONGITUDE,
+            latitudeDelta: 0.04,
+            longitudeDelta: 0.04,
+        };
         var content;
         if (this.props.location && this.props.location.geometry && this.props.location.geometry.type === 'Polygon') {
             const polygon = this.props.location.geometry.coordinates[0].map(coordsArr => {
@@ -48,7 +54,7 @@ export default class Map extends Component<Props> {
         }
 
         return (
-            <MapView style={styles.map} index={0}>
+            <MapView style={styles.map} initialRegion={initialRegion}>
                 {content ?
                     content : null
                 }
