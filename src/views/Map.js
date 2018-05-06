@@ -44,10 +44,13 @@ export default class Map extends Component<Props> {
             );
         } else if (this.props.location && this.props.location.geometry && this.props.location.geometry.type === 'Point') {
             const point = this.props.location.geometry.coordinates;
+            const properties = this.props.location.properties;
             initialRegion.latitude = point[1];
             initialRegion.longitude = point[0];
             content = (
                 <MapView.Marker
+                    title={properties.nom.toUpperCase()}
+                    description={properties.adresse}
                     coordinate={{
                         latitude: point[1],
                         longitude: point[0],
