@@ -30,6 +30,7 @@ export default class Map extends Component<Props> {
                 }
                 return coords;
             });
+            const color = 'rgba(80, 0, 0, 0.5)';
             content = (
                 <MapView.Polygon
                     fillColor={color}
@@ -46,7 +47,6 @@ export default class Map extends Component<Props> {
             );
         }
 
-        var color = "rgba(80, 0, 0, 0.5)";
         return (
             <MapView style={styles.map}>
                 {content}
