@@ -74,13 +74,11 @@ export default class Pickup extends Component<Props> {
         Voice.stop();
         var text = this.state.textRecognized;
         this.client.textRequest(text).then((result) => {
-            // TODO: extract ITEM ID from result
-            console.log(result);
-            var id = 'banana.n.02';
+            var id;
             try {
                 id = result['result']['parameters']['ITEM'];
             } catch(error) {
-
+                id = 'banana.n.02';
             }
             ApiService.sendText(id);
             this.props.nav.navigateDown()

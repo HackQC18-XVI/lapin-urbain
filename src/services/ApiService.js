@@ -52,7 +52,7 @@ class ApiService {
         });
     }
     async getLocationInfo(isDepot, type) {
-        if (isPickup) {
+        if (isDepot) {
             return this.getDropInfo(type);
         } else {
             return this.getPickupInfo(type);
