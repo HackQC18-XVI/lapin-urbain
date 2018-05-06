@@ -31,12 +31,6 @@ const styles = StyleSheet.create({
         width: 200,
         height: 200
     },
-    text: {
-        fontSize: 24,
-        position: 'absolute',
-        top: 100,
-        color: '#16aa9d'
-    },
     wave: {
         position: 'absolute',
         bottom: 10
@@ -103,10 +97,17 @@ export default class Pickup extends Component<Props> {
     }
 
     render() {
+        // Style text
+        var text = {
+            fontSize: 24,
+            position: 'absolute',
+            top: 100,
+            color: this.state.error ? '#8bc441' : '#16aa9d'
+        };
         return (
             <View style={styles.container}>
-                <Text style={styles.text}>
-                    {this.state.error ? this.state.error : this.state.textRecognized}
+                <Text style={text}>
+                    {this.state.error ? this.state.error.toUpperCase() : this.state.textRecognized}
                 </Text>
                 <TouchableOpacity
                     style={styles.captureSound}
