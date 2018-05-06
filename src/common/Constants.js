@@ -1,5 +1,9 @@
 var CONSTANTS = {
-    HOST_API: 'https://7ae367a0.ngrok.io'
+    HOST_API: 'https://7ae367a0.ngrok.io',
+    MY_POSITION: {
+        LONGITUDE: -73.56229610000003,
+        LATITUDE: 45.4946761
+    }
 };
 
 var URL = {

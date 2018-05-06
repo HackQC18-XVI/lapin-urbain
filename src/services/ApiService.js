@@ -44,23 +44,26 @@ class ApiService {
         }).then((response) => {
             response.json().then((response) => {
                 this.loading = false;
-                response['location'] = this.getLocationInfo(true, response['type-collecte']);
+                response['location'] = this.getLocationInfo(response['depot'], response['type-collecte']);
                 this.callback(response);
             });
         }).catch((error) => {
             this.loading = false;
         });
     }
-    async getLocationInfo(isPickup, type) {
+    async getLocationInfo(isDepot, type) {
         if (isPickup) {
-            return this.getPickupInfo(type);
-        } else {
             return this.getDropInfo(type);
+        } else {
+            return this.getPickupInfo(type);
         }
     }
     async getDropInfo(type) {
         // Request
-        const response = await fetch(URL.dropInfo.replace(':type', type), {
+        var longitude = Constants.MY_POSITION.LONGITUDE;
+        var latitude = Constants.MY_POSITION.LATITUDE;
+        var params = '?longitute=' + longitude + '&latitude=' + latitude;
+        const response = await fetch(URL.dropInfo.replace(':type', type) + params, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
@@ -71,7 +74,10 @@ class ApiService {
     }
     async getPickupInfo(type) {
         // Request
-        const response = await fetch(URL.pickupInfo.replace(':type', type), {
+        var longitude = Constants.MY_POSITION.LONGITUDE;
+        var latitude = Constants.MY_POSITION.LATITUDE;
+        var params = '?longitute=' + longitude + '&latitude=' + latitude;
+        const response = await fetch(URL.pickupInfo.replace(':type', type) + params, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json'
