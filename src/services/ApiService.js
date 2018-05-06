@@ -1,7 +1,7 @@
 import {URL} from '../common/Constants';
 
 
-class PictureService {
+class ApiService {
     constructor() {
         this.loading = false;
     }
@@ -27,6 +27,7 @@ class PictureService {
         }).then((response) => {
             response.json().then((response) => {
                 this.loading = false;
+                response['location'] = this.getLocationInfo(true, response['type-collecte']);
                 this.callback(response);
             });
         }).catch((error) => {
@@ -43,12 +44,42 @@ class PictureService {
         }).then((response) => {
             response.json().then((response) => {
                 this.loading = false;
+                response['location'] = this.getLocationInfo(true, response['type-collecte']);
                 this.callback(response);
             });
         }).catch((error) => {
             this.loading = false;
         });
     }
+    async getLocationInfo(isPickup, type) {
+        if (isPickup) {
+            return this.getPickupInfo(type);
+        } else {
+            return this.getDropInfo(type);
+        }
+    }
+    async getDropInfo(type) {
+        // Request
+        const response = await fetch(URL.dropInfo.replace(':type', type), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const result = await response.json();
+        return result;
+    }
+    async getPickupInfo(type) {
+        // Request
+        const response = await fetch(URL.pickupInfo.replace(':type', type), {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        const result = await response.json();
+        return result;
+    }
 }
 
-export default new PictureService();
+export default new ApiService();

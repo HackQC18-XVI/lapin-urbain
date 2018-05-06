@@ -12,7 +12,7 @@ import Voice from 'react-native-voice';
 
 // App imports
 import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
-import PictureService from '../services/PictureService';
+import ApiService from '../services/ApiService';
 
 // Styles
 const styles = StyleSheet.create({
@@ -77,7 +77,7 @@ export default class Pickup extends Component<Props> {
             // TODO: extract ITEM ID from result
             console.log(result);
             var id = 'banana.n.02';
-            PictureService.sendText(id);
+            ApiService.sendText(id);
             this.props.nav.navigateDown()
         });
     }

@@ -4,7 +4,9 @@ var CONSTANTS = {
 
 var URL = {
     predict: CONSTANTS.HOST_API + '/predict',
-    categories: CONSTANTS.HOST_API + '/categories/:id'
+    categories: CONSTANTS.HOST_API + '/categories/:id',
+    dropInfo: CONSTANTS.HOST_API + '/drop-info/:type',
+    pickupInfo: CONSTANTS.HOST_API + '/pickup-info/:type'
 };
 
 export {

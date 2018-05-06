@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 // App imports
-import PictureService from '../services/PictureService';
+import ApiService from '../services/ApiService';
 import MapView from './Map';
 
 // Styles
@@ -30,7 +30,7 @@ export default class Description extends Component<Props> {
         this.callbackResult = this.callbackResult.bind(this);
     }
     componentDidMount() {
-        PictureService.callback = this.callbackResult;
+        ApiService.callback = this.callbackResult;
     }
     callbackResult(result) {
         this.setState({item: result});
@@ -39,7 +39,7 @@ export default class Description extends Component<Props> {
         var item = this.state.item;
         return (
             <View style={styles.container}>
-                {!PictureService.loading && item ?
+                {!ApiService.loading && item ?
                     <View>
                         <Text>Type: {item['id']}</Text>
                         <Text>Categorie: {item['categorie']}</Text>
