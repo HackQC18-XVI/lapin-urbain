@@ -117,7 +117,7 @@ export default class Pickup extends Component<Props> {
                 <View style={styles.wave}>
                     <RNSiriWaveView
                         type={1}
-                        width={380}
+                        width={360}
                         height={200}
                         startAnimation={this.state.startAnimation}
                         stopAnimation={this.state.stopAnimation} />
