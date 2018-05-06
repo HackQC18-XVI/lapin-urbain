@@ -1,6 +1,6 @@
-# LapinUrbain
+# SnapTrash
 
-LapinUrbain mobile application
+SnapTrash mobile application
 
 ### Technologies
 * [react-native](https://facebook.github.io/react-native/)
