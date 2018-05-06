@@ -74,7 +74,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#bfbfbf',
         top: 24,
-        left: 10
+        left: 10,
+        width: '90%'
     },
     message:{
         fontSize: 14,

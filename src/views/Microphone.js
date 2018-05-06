@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
         height: 200
     },
     text: {
-        fontSize: 18,
+        fontSize: 24,
         position: 'absolute',
-        top: 100
+        top: 100,
+        color: '#16aa9d'
     },
     wave: {
         position: 'absolute',
