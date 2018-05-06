@@ -1,16 +1,12 @@
+// Lib imports
 import React, { Component } from 'react';
-import {
-    Image,
-    StyleSheet,
-    TouchableOpacity,
-    Text,
-    View
-} from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
 // App imports
+import PictureService from '../services/PictureService';
 import MapView from './Map';
-import PickupView from './Pickup';
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -25,11 +21,37 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class WasteDescription extends Component<Props> {
+export default class Pickup extends Component<Props> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            item: null
+        };
+        this.callbackResult = this.callbackResult.bind(this);
+    }
+    componentDidMount() {
+        PictureService.callback = this.callbackResult;
+    }
+    componentWillUnmount() {
+        console.log('unmount');
+    }
+    callbackResult(result) {
+        this.setState({item: result});
+    }
     render() {
+        var item = this.state.item;
         return (
             <View style={styles.container}>
-                <PickupView />
+                {!PictureService.loading ?
+                    <View>
+                        <Text>Type: {item['id']}</Text>
+                        <Text>Categorie: {item['categorie']}</Text>
+                        <Text>Description: {item['description']}</Text>
+                        <Text>Instructions: {item['instructions-speciales']}</Text>
+                        <MapView />
+                    </View> :
+                    <Text>Loading...</Text>
+                }
             </View>
         );
     }

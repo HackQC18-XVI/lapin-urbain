@@ -1,16 +1,13 @@
+// Lib imports
 import React, { Component } from 'react';
-import {
-    Image,
-    StyleSheet,
-    TouchableOpacity,
-    View
-} from 'react-native';
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
 // App imports
 import WasteDescription from './WasteDescription';
 import PictureService from '../services/PictureService';
 
+// Styles
 const styles = StyleSheet.create({
     // General
     container: {

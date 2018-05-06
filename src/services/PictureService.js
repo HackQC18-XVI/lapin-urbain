@@ -3,9 +3,11 @@ import {URL} from '../common/Constants';
 
 class PictureService {
     constructor() {
-        this.description = {}
+        this.loading = false;
     }
     send(urlImage) {
+        this.loading = true;
+
         // Prepare data
         var photo = {
             uri: urlImage,
@@ -14,6 +16,7 @@ class PictureService {
         };
         var body = new FormData();
         body.append('file', photo);
+
         // Request
         fetch(URL.predict, {
             method: 'POST',
@@ -23,14 +26,11 @@ class PictureService {
             body: body
         }).then((response) => {
             response.json().then((response) => {
-                console.log(response);
-                if (response && response.results && response.results.length) {
-
-                }
-
-            })
+                this.loading = false;
+                this.callback(response);
+            });
         }).catch((error) => {
-            console.log(error);
+            this.loading = false;
         });
     }
 }

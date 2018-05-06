@@ -1,3 +1,4 @@
+// Lib imports
 import React, { Component } from 'react';
 import {
     Image,
@@ -8,9 +9,11 @@ import {
 } from 'react-native';
 // import RNSiriWaveView from 'react-native-siri-wave-view';
 import Voice from 'react-native-voice';
+
+// App imports
 import ApiAiClient from '../common/library/ApiAi/ApiAiClient';
 
-
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -42,9 +45,9 @@ export default class Pickup extends Component<Props> {
         Voice.onSpeechResults = this.onSpeechResultsHandler.bind(this);
     }
     componentDidMount() {
-
-        var token = 'cd1fafc772034cce8b83c34bdba73387';
-        this.client = new ApiAiClient({accessToken: token});
+        const token = 'cd1fafc772034cce8b83c34bdba73387';
+        const locale = 'fr';
+        this.client = new ApiAiClient({accessToken: token, lang: locale});
     }
 
     // Listener

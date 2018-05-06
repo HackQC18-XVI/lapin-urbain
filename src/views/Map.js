@@ -1,14 +1,10 @@
+// Lib imports
 import React, { Component } from 'react';
-import {
-    Image,
-    StyleSheet,
-    Text,
-    View
-} from 'react-native';
-
+import { StyleSheet, View } from 'react-native';
 import MapView from 'react-native-maps';
 import Geojson from 'react-native-geojson';
 
+// Styles
 const styles = StyleSheet.create({
     container: {
         flex: 1
