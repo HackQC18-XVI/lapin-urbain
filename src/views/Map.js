@@ -31,7 +31,8 @@ export default class Map extends Component<Props> {
         } else {
             const point = this.props.location.geometry.coordinates;
             content = (
-                <View />
+                <MapView.Marker
+                    coordinate={point} />
             );
         }
 
