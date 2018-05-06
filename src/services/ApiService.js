@@ -62,7 +62,7 @@ class ApiService {
         // Request
         var longitude = Constants.MY_POSITION.LONGITUDE;
         var latitude = Constants.MY_POSITION.LATITUDE;
-        var params = '?longitute=' + longitude + '&latitude=' + latitude;
+        var params = '?longitude=' + longitude + '&latitude=' + latitude;
         const response = await fetch(URL.dropInfo.replace(':type', type) + params, {
             method: 'GET',
             headers: {
@@ -76,7 +76,7 @@ class ApiService {
         // Request
         var longitude = Constants.MY_POSITION.LONGITUDE;
         var latitude = Constants.MY_POSITION.LATITUDE;
-        var params = '?longitute=' + longitude + '&latitude=' + latitude;
+        var params = '?longitude=' + longitude + '&latitude=' + latitude;
         const response = await fetch(URL.pickupInfo.replace(':type', type) + params, {
             method: 'GET',
             headers: {
