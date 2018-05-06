@@ -71,8 +71,10 @@ class ApiService {
     }
     getLocationInfo(isDepot, type) {
         if (isDepot) {
+            CONSTANTS.MY_POSITION = CONSTANTS.QUEBEC;
             return this.getDropInfo(type);
         } else {
+            CONSTANTS.MY_POSITION = CONSTANTS.MONTREAL;
             return this.getPickupInfo(type);
         }
     }
