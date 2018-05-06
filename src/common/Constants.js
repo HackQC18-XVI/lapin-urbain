@@ -1,9 +1,20 @@
 var CONSTANTS = {
     HOST_API: 'https://7ae367a0.ngrok.io',
+    // ETS
     MY_POSITION: {
         LONGITUDE: -73.56229610000003,
         LATITUDE: 45.4946761
     }
+    // QUEBEC
+    // MY_POSITION: {
+    //     LONGITUDE: -71.2079809,
+    //     LATITUDE: 46.8138783
+    // }
+    // Sherbrooke
+    // MY_POSITION: {
+    //     LONGITUDE: -71.89291070000002,
+    //     LATITUDE: 45.4041718
+    // }
 };
 
 var URL = {
