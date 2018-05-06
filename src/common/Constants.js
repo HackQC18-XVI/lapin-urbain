@@ -1,5 +1,5 @@
 var CONSTANTS = {
-    HOST_API: 'https://7ae367a0.ngrok.io',
+    HOST_API: 'https://e7e36d5d.ngrok.io',
     // ETS
     MY_POSITION: {
         LONGITUDE: -73.56229610000003,
