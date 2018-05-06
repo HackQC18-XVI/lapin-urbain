@@ -101,6 +101,7 @@ export default class Pickup extends Component<Props> {
         var text = {
             fontSize: 22,
             position: 'absolute',
+            textAlign: 'center',
             top: 100,
             color: this.state.error ? '#8bc441' : '#16aa9d'
         };
